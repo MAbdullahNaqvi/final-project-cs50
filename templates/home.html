@@ -1,20 +1,28 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    CS50-Chat| Home
+Home
 {% endblock %}
 
 {% block main %}
-<form action="/" method="post">
+    {% if error%}
+<div class="errorbox">
+    <p class="error-text">{{error}}</p>
+</div>
+    {% endif %}
+
+<form action="/" method="POST">
 <div class="container">
-    <input type="text" placeholder="Name" name="name" value="name" id="name">
+    <input type="text" placeholder="Name" name="name" value="{{name}}" id="name">
 </div>
 <div class="container">
-    <input type="text" name="room-id" placeholder="Room ID" value="room_id" id="room">
+    <input type="text" name="room-id" placeholder="Room ID" value="{{code}}" id="room">
 </div>
 <div class="container">
-    <button type="submit" class="form-btn">Join Room</button>
-    <button type="submit" class="form-btn">Create Room</button>
+    <button name="join" type="submit" class="form-btn">Join Room</button>
+    <button name="create" type="submit" class="form-btn">Create Room</button>
 </div>
 </form>
+
+
 {% endblock %}
