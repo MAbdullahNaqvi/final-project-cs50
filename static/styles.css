@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap');
 * {
     box-sizing: border-box;
-    background-color: #040D12;
+    
     padding: 0px;
     margin: 0px;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
+}
+body{
+    background-color:#040D12;
 }
 .container{
     display: flex;
@@ -100,9 +103,7 @@ header button:hover {
 #name{
     background-color: #ffffff;
     margin-top: 30px;
-    width: 30%;
-    max-width: 300px;
-    min-width: 100px;
+    width: 300px;
     height: 30px;
     text-align: center;
     justify-content: center;
@@ -112,9 +113,7 @@ header button:hover {
 #room {
     background-color: #ffffff;
     margin-top: 30px;
-    width: 30%;
-    max-width: 300px;
-    min-width: 100px;
+    width: 300px;
     height: 30px;
     text-align: center;
     justify-content: center;
@@ -139,6 +138,7 @@ header button:hover {
 }
 .errorbox{
     display: flex;
+    width: 100vw;
     color:#040D12;
     justify-content: center;
     align-items: center;
@@ -151,4 +151,70 @@ header button:hover {
     font-size: 18px;
     font-weight: 900;
     font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.message-container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 450px;
+    background-color: #2C3333;
+    border-radius: 20px;
+}
+.message-header h1{
+    color: #ffffff;
+    font-size: 30px;
+    margin: 10px 20px;
+    font-weight: 800;
+}
+.message-body {
+    background-color: #395B64;
+    flex: 1;
+    justify-content: start;
+    padding: 15px 15px;
+    overflow-y: scroll;
+}
+.message{
+    font-size: 18px;
+    font-weight: 400px;
+    color: #ffffff;
+    background-color: #001C30;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 10px;
+}
+.user-message {
+    font-size: 18px;
+    font-weight: 400px;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 10px;
+    width: fit-content;
+    margin-left: auto;
+    border-radius: 10px;
+}
+.message-fotter form {
+    display: flex;
+
+}
+.message-fotter form input {
+    flex: 1;
+    height: 20px;
+    font-size: 18px;
+    padding: 15px;
+}
+.message-fotter form button {
+    background-color: #001C30;
+    width: 80px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
 }
