@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+login
+{% endblock %}
+
+{% block main %}
+    {% if error%}
+<div class="errorbox">
+    <p class="error-text">{{error}}</p>
+</div>
+    {% endif %}
+
+<form action="/login" method="post">
+<div class="container">
+    <input type="text" placeholder="Name" name="name" id="name" class="form-input" autocomplete="off">
+</div>
+<div class="container">
+    <input type="password" name="password" placeholder="Password"  id="password" class="form-input">
+</div>
+<div class="container">
+    <button name="login" type="submit" class="form-btn">Login</button>
+</div>
+</form>
+
+
+{% endblock %}

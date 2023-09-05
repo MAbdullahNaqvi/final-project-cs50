@@ -10,23 +10,52 @@
     <title>CS50-Chat | {% block title %} {% endblock %}</title>
 </head>
 <body>
+    {% if session["user_id"] %}        
     <header>
         <a href="/"><img class="logo" src="/static/logo2.png" alt="logo"></a>
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="#">Friends</a></li>
-                <li><a href="#">Rooms</a></li>
+                <li class="nav-links-li"><a href="/">Home</a></li>
+                <li class="nav-links-li"><a href="/login">Friends</a></li>
+                <li class="nav-links-li"><a href="/">Rooms</a></li>
+                <li class="nav-links-li"><a href="/logout"><button>Logout</button></a></li>
             </ul>
         </nav>
-        <a href="#"><button>Account</button></a>
-        <input type="checkbox" id="check">
-        <label for="check" id="checkbtn"><i class="fa-solid fa-bars"></i></label>
+        
+        <input type="checkbox" class="check">
+        <label for="check" class="checkbtn"><i class="fa-solid fa-bars"></i></label>
     </header>
+    {% else %}
+    <header>
+        <a href="/"><img class="logo" src="/static/logo2.png" alt="logo"></a>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li class="nav-links-li"><a href="/register">Register</a></li>
+                <li class="nav-links-li"><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+        
+        <input type="checkbox" class="check">
+        <label for="check" class="checkbtn"><i class="fa-solid fa-bars"></i></label>
+    </header>
+    {% endif %}
     <main>
         {% block main %}{% endblock %}
     </main>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> -->
 </body>
+<script>
+    var hamburger = document.querySelector(".checkbtn")
+    var navmenu = document.querySelector(".nav-links")
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active")
+        navmenu.classList.toggle("active")
+    })
+    document.querySelectorAll(".nav-links-li").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active")
+        navlinks.classList.remove("active")
+    } ))
+</script>
 </html>

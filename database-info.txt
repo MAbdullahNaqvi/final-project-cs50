@@ -2,7 +2,9 @@ Creation:
 CREATE TABLE users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    hash TEXT NOT NULL
+    hash TEXT NOT NULL,
+    room_id INTEGER, 
+    FOREIGN KEY(room_id) REFERENCES rooms(id)
 );
 CREATE TABLE rooms(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
