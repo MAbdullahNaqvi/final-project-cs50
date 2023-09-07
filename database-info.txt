@@ -3,13 +3,19 @@ CREATE TABLE users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     hash TEXT NOT NULL,
-    room_id INTEGER, 
+    room_id TEXT, 
     FOREIGN KEY(room_id) REFERENCES rooms(id)
 );
 CREATE TABLE rooms(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id TEXT PRIMARY KEY NOT NULL,
     admin_id INTEGER NOT NULL,
-    room_id INTEGER NOT NULL,
     members INTEGER NOT NULL,
     FOREIGN KEY(admin_id) REFERENCES users(id)
 );
+CREATE TABLE messages(
+    room_id TEXT NOT NULL,
+    sender_id INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    FOREIGN KEY(sender_id) REFERENCES users(id)
+    FOREIGN KEY(room_id) REFERENCES rooms(id)
+)

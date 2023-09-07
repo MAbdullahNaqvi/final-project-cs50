@@ -159,7 +159,7 @@ main{
     display: flex;
     flex-direction: column;
     height: 80vh;
-    width: 450px;
+    width: 60vw;
     background-color: #2C3333;
     border-radius: 20px;
 }
@@ -177,22 +177,43 @@ main{
     overflow-y: scroll;
 }
 .message{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400px;
+    margin-top: 8px;
     color: #ffffff;
     background-color: #001C30;
     padding: 10px;
     width: fit-content;
+    border-radius: 8px;
+}
+.message b{
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: 700px;
+    color: #ff0000;
+    background-color: #001C30;
+    padding: 8px;
+    width: fit-content;
     border-radius: 10px;
 }
 .user-message {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400px;
+    margin-top: 8px;
     color: #000000;
     background-color: #ffffff;
-    padding: 10px;
+    padding: 8px;
     width: fit-content;
     margin-left: auto;
+    border-radius: 10px;
+}
+.user-message b{
+    font-size: 18px;
+    font-weight: 700px;
+    color: #ff0000;
+    background-color: #ffffff;
+    padding: 8px;
+    width: fit-content;
     border-radius: 10px;
 }
 .message-fotter form {
