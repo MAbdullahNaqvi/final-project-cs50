@@ -216,21 +216,24 @@ main{
     width: fit-content;
     border-radius: 10px;
 }
-.message-fotter form {
+.message-fotter  {
     display: flex;
 
 }
-.message-fotter form input {
+.message-fotter input {
     flex: 1;
     height: 20px;
     font-size: 18px;
     padding: 15px;
 }
-.message-fotter form button {
+.message-fotter button {
     background-color: #001C30;
     width: 80px;
     border: none;
     outline: none;
     color: white;
     font-size: 16px;
+}
+#browse-id {
+    display: none;
 }

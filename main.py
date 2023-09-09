@@ -119,10 +119,43 @@ def logout():
     return redirect("/")
 
 
-@app.route("/profile", methods =["GET","POST"])
+@app.route("/browse_rooms", methods =["GET","POST"])
 @login_required
-def profile():
-    return "TODO:"
+def browse_rooms():
+    rooms = db.execute("SELECT * FROM rooms")
+    if request.method == "POST":
+        join = request.form.get("join", False)
+        code = request.form.get("id")
+        if join != False and request.form.get("id") == None:
+            error = "Unable to join"
+            return render_template("browse_rooms.html", error = error, rooms = rooms)
+        if join != False:
+            db.execute("UPDATE users SET room_id = ? WHERE id = ?", code, session["user_id"])
+            session["room_id"] = code
+            db.execute("UPDATE users SET room_id = ? WHERE id = ?", session["room_id"], session["user_id"])
+            return redirect(url_for("room"))
+    else:
+        return render_template("browse_rooms.html", rooms = rooms)
+
+
+@app.route("/change_password", methods =["GET","POST"])
+@login_required
+def change_password():
+    if request.method == "POST":
+       rows = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
+       if not request.form.get("password") or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            error = "Incorrect password"
+            return render_template("change_password.html", error = error)
+       if not request.form.get("confirm_password") or not request.form.get("new_password"):
+           error = "new password and/or conformation not provided"
+           return render_template("change_password.html", error = error)
+       if request.form.get("confirm_password") != request.form.get("new_password"):
+            error = "passwords dont match"
+            return render_template("change_password.html", error = error)
+       db.execute("UPDATE users SET hash = ? WHERE id = ?", generate_password_hash(request.form.get("new_password")), session["user_id"])
+       return redirect("/")
+    else:
+        return render_template("change_password.html")
 
 
 @app.route("/",methods=["GET", "POST"])
@@ -203,14 +236,14 @@ def disconnect():
         db.execute("DELETE FROM messages WHERE room_id = ?", room_rows[0]["id"])
         db.execute("UPDATE users SET room_id = NULL WHERE id = ?",session["user_id"])
         db.execute("DELETE FROM rooms WHERE id = ?",room_rows[0]["id"])
-    leave_room(rows[0]["room_id"])
+    leave_room(session["room_id"])
     db.execute("UPDATE users SET room_id = NULL WHERE id = ?",session["user_id"])
 
     
 
 @socketio.on("message")
 def message(data):
-    rows = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
+    rows = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])   
     content = {
     "name": rows[0]["name"],
     "message": data["data"]
@@ -221,5 +254,5 @@ def message(data):
 
 
 if __name__ == "__main__":
-    socketio.run(app,debug=True, host='192.168.0.105')
+    socketio.run(app,debug=True, host='0.0.0.0')
 

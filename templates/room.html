@@ -10,15 +10,11 @@ Room: {{room_id}}
         <h1>Room Code: {{room_id}}</h1>
     </div>
     <div class="message-body" id="message-body">
-        <p class="message"><b>Abdullah:</b> HELLO</p>
-        <p class="user-message">HI!!!!</p>
     </div>
     <div class="message-fotter">
-        <form action="/room" method="post">
             <input type="text" name="message" id="message" placeholder="Type Your Message Here" autofocus
                 autocomplete="off">
             <button type="button" name="send" onclick="sendMessage()">SEND</button>
-        </form>
     </div>
 </div>
 
@@ -59,7 +55,7 @@ Room: {{room_id}}
     const sendMessage = () => {
         var message = document.getElementById("message")
         if (message.value == "") return;
-        socketio.emit("message", { data: message.value });
+        socketio.emit("message", { data: message.value});
         message.value = "";
     }
 </script>
